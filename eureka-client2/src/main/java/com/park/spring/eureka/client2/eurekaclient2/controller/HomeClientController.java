@@ -1,5 +1,4 @@
-package com.park.eureka.client.eurekaclient.controller;
-
+package com.park.spring.eureka.client2.eurekaclient2.controller;
 
 import com.netflix.hystrix.contrib.javanica.annotation.HystrixCommand;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,17 +14,14 @@ public class HomeClientController {
     @Autowired
     private RestTemplate restTemplate;
 
-    // TODO: Hystrix
-    @HystrixCommand(fallbackMethod = "fallback", groupKey = "Home", commandKey = "home", threadPoolKey = "helloThread")
+    @HystrixCommand(fallbackMethod = "fallback", groupKey = "Home", commandKey = "home", threadPoolKey = "homeThread")
     @GetMapping
     public String home() {
         String url = "http://eureka-server/rest/home/server";
-        // Return by calling object form server
-        return restTemplate.getForObject(url, String.class) + "[Client]";
+        return restTemplate.getForObject(url, String.class) + "[Client2]";
     }
 
-    public String fallback(Throwable hystrixCommand) {
-        return "Client: Server not found!!";
+    public String fallback(Throwable hysirixCommand) {
+        return "Client2: Server not found!!";
     }
-
 }
