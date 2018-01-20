@@ -18,7 +18,7 @@ public class ServiceInstanceRestController {
 
     @RequestMapping("/service-instances/{appName}")
     public List<ServiceInstance> serviceInstancesByAppName(@PathVariable("appName") String appName) {
-        // rReturn detail of App
+        // Return detail of App
         return this.discoveryClient.getInstances(appName);
     }
 }
